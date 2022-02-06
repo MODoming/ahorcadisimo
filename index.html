@@ -8,17 +8,36 @@
     <title>Ahorcado</title>
 </head>
 <header>
-    <h1>AHORCADO</h1><br>
-    <button id="inicio">Iniciar juego</button><br>
-    <input type="text" name="nuevoTexto" id="nText" placeholder="Ingrese una nueva palabra"><br>
-    <button id="agregar">Agregar palabra</button><br>    
+    <div>
+        <h1>AHORCADISIMO!!</h1><br>
+        <button id="inicio" onfocus="true" >Iniciar juego</button><br>
+        <input type="text" name="nuevoTexto" id="nText" placeholder="Ingrese una nueva palabra"><br>
+        <button id="agregar">Agregar palabra</button><br> 
+    </div>       
 </header>
-<body id="teclado">
-    <canvas id="lienzo" width="400" height="600" style="border: opx;"></canvas>
-    <label for="text" id="error"></label><br>
-    
-    <label for="correcto" id="correcta"></label>
+<body class="contenedor" id="teclado">
+    <div class="columna1"> <canvas id="lienzo" width="250" height="460" style="border: opx;"></canvas></div>           
+    <div class="columna">
+        <div>
+            <label class="mensaje" for="text" id="mensaje1"></label><br> 
+            <label class="mensaje" for="text" id="mensaje2"></label><br>
+        </div>
+        <div>
+            <label class="mensaje" for="text" id="error"></label><br>
+        </div>
+          
+    </div> 
+    <div class="base">
+        <label for="correcto" id="correcta"></label>
+    </div>    
 </body>
+
 <script src="js/juego.js"></script>
 <script src="js/index.js"></script> 
+
+<footer class="footer">
+    <div class="copyrigth">
+        <p>&copy; 2022 | Max Dominguez | V 1.0 - challenge Oracle Next Education by Alura Latam</p>
+    </div>
+</footer>
 </html>

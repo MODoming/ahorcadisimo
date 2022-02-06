@@ -1,6 +1,4 @@
 *{
-    margin: 0px;
-    padding: 0px;
     text-size-adjust: auto;
     align-self: center;
     text-align: center;
@@ -9,7 +7,16 @@
     justify-content: center;
     align-content: center;    
 }
+header{
+    grid-column: 1/3;
+    vertical-align: middle;
+    align-content: center;
+    align-self: center;
+    justify-self: center;
+    justify-items: center;
+}
 h1{
+    font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-top: 10px;
 }
@@ -28,4 +35,52 @@ button{
     border-radius: 10px;
     width: 200px;
     height: 40px;
+}
+.contenedor{
+    display: grid;
+    grid-template-rows: minmax(200px auto);    
+    grid-template-columns: 1fr 1fr;    
+}
+.columna1{
+    align-self: center;
+    justify-self: end;    
+    display: grid;
+    padding: 1px;
+    grid-column: 1/2;
+}
+.columna{
+    align-self: center;
+    justify-self: start;
+    grid-column: 2/3;
+}
+.central{
+    display: grid;    
+    grid-template-rows: minmax(100px auto);    
+}
+.base{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1/3;    
+    align-self: end;
+    justify-self: center;
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+}
+footer{
+    position: relative;
+    margin-top: 5%;
+    height: 40px;
+    padding:5px 0px;
+    clear: both;
+    grid-column: 1/3;
+}
+.copyrigth{
+    background: none;
+    align-items: top;
+    width: 100%;
+    margin: 10px, auto;
+    font-display: auto;
+    margin-top: 2px;
+    margin-bottom: 10px;
 }
