@@ -10,6 +10,10 @@ var ahorcado = document.getElementById("lienzo");
 var ctx = ahorcado.getContext("2d");
 var nText = "";
 var aleatoria = "";
+var correcta = [];
+var error = "";
+var vidas = 6;
+var codigo = ""
 
 function palo(ctx, xi, yi, xf, yf){
     ctx.beginPath();
@@ -41,11 +45,10 @@ function dibujarTorre(){
     palo(ctx, 100, 050, 200, 050);
     palo(ctx, 200, 050, 200, 100);
 };
+function esLetra(caracter){return (64 < caracter.toUpperCase().charCodeAt(0) < 91)};
 
-const esLetra = (caracter) => {
-	let ascii = caracter.toUpperCase().charCodeAt(0);
-	return ascii > 64 && ascii < 91;
-};
+function dispositivo(){ return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))};
+
 
 botonInicio.addEventListener("click", function(event){    
     document.getElementById("mensaje1").innerHTML = ""
@@ -53,43 +56,48 @@ botonInicio.addEventListener("click", function(event){
     event.preventDefault();
     dibujarTorre()
     document.getElementById("error").innerHTML = "";
-    var correcta = [];
-    var error = "";
-    var vidas = 6;
+    correcta = [];
+    error = "";
+    vidas = 6;
+    codigo = ""
     aleatoria= palabras[Math.floor(Math.random() * palabras.length)].split("");
     for (i=0;i<aleatoria.length;i++){
         correcta[i] = "_";
     };
     document.getElementById("correcta").innerHTML = correcta.join(" ");   
+
+    if (dispositivo()){
+        document.getElementById("entrada").style.display = "flex";
+        document.getElementById("entrada").focus();
+    } else {
+        window.addEventListener("keypress", (event) => {       //Evento capturador de teclas en PC 
+            codigo = event.key.toLowerCase();
+            if (esLetra(codigo)){
+                if (aleatoria.includes(codigo)){
+                    for (let i=0; i< aleatoria.length;i++){                    
+                        if (aleatoria[i] === codigo){
+                            correcta[i] = codigo.toUpperCase();
+                        };      
+                    };                
+                    document.getElementById("correcta").innerHTML = correcta.join("  ");
+                    if (aleatoria.join("").toLowerCase() === correcta.join("").toLowerCase()){
+                        document.getElementById("mensaje1").innerHTML = "GANASTE!! Muy bien!!!";
+                        document.getElementById("mensaje2").innerHTML = "La respuesta es " + aleatoria.join("");
+                    };
+                } else if (!error.includes(codigo) && vidas > 0){
+                    vidas -= 1;
+                    error += " " + codigo;
+                    document.getElementById("error").innerHTML = error.toUpperCase();
+                    dibujarMunieco(vidas);
+                    if ( vidas === 0 ) {
+                        document.getElementById("mensaje1").innerHTML = "PERDISTE!!";
+                        document.getElementById("mensaje2").innerHTML = "La respuesta correcta era " + aleatoria.join("");
+                    };
+                };
+            } else { alert("Solo se aceptan letras!!")};
+        });
+    };
     
-    window.addEventListener("keypress", (event) => {        
-        var codigo = event.key.toLowerCase();
-        if (esLetra(codigo)){
-            if (aleatoria.includes(codigo)){
-                for (let i=0; i< aleatoria.length;i++){                    
-                    if (aleatoria[i] === codigo){
-                        correcta[i] = codigo.toUpperCase();
-                    };      
-                };                
-                document.getElementById("correcta").innerHTML = correcta.join("  ");
-                if (aleatoria.join("").toLowerCase() === correcta.join("").toLowerCase()){
-                    document.getElementById("mensaje1").innerHTML = "GANASTE!! Muy bien!!!";
-                    document.getElementById("mensaje2").innerHTML = "La respuesta es " + aleatoria.join("");
-                    document.getElementById("inicio").onfocus();
-                };
-            } else if (!error.includes(codigo) && vidas > 0){
-                vidas -= 1;
-                error += " " + codigo;
-                document.getElementById("error").innerHTML = error.toUpperCase();
-                dibujarMunieco(vidas);
-                if ( vidas === 0 ) {
-                    document.getElementById("mensaje1").innerHTML = "PERDISTE!!";
-                    document.getElementById("mensaje2").innerHTML = "La respuesta correcta era " + aleatoria.join("");
-                    document.getElementById("inicio").onfocus();
-                };
-            };
-        } else { alert("Solo se aceptan letras!!")};
-    });
 });
 
 botonAgregar.addEventListener("click", function(event){
