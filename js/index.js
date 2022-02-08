@@ -14,6 +14,7 @@ var correcta = [];
 var error = "";
 var vidas = 6;
 var codigo = ""
+var plataforma = ""
 
 function palo(ctx, xi, yi, xf, yf){
     ctx.beginPath();
@@ -68,8 +69,13 @@ botonInicio.addEventListener("click", function(event){
     if (dispositivo()){
         document.getElementById("entrada").style.display = "flex";
         document.getElementById("entrada").focus();
+        plataforma = MOBILEINPUT
+        teclado = "input"
+    } else {
+        plataforma = window
+        teclado = "keypress"
     };
-    window.addEventListener("keypress", (event) => {
+    plataforma.addEventListener(teclado, (event) => {
         codigo = event.key.toLowerCase();
         document.getElementById("entrada").value = "";
         if (esLetra(codigo)){
@@ -82,7 +88,7 @@ botonInicio.addEventListener("click", function(event){
                 document.getElementById("correcta").innerHTML = correcta.join("  ");
                 if (aleatoria.join("").toLowerCase() === correcta.join("").toLowerCase()){
                     document.getElementById("mensaje1").innerHTML = "GANASTE!! Muy bien!!!";
-                    document.getElementById("mensaje2").innerHTML = "La respuesta es " + aleatoria.join("");
+                    return document.getElementById("mensaje2").innerHTML = "La respuesta es " + aleatoria.join("");
                 };
             } else if (!error.includes(codigo) && vidas > 0){
                 vidas -= 1;
@@ -91,7 +97,7 @@ botonInicio.addEventListener("click", function(event){
                 dibujarMunieco(vidas);
                 if ( vidas === 0 ) {
                     document.getElementById("mensaje1").innerHTML = "PERDISTE!!";
-                    document.getElementById("mensaje2").innerHTML = "La respuesta correcta era " + aleatoria.join("");
+                    return document.getElementById("mensaje2").innerHTML = "La respuesta correcta era " + aleatoria.join("");
                 };
             };
         } else { alert("Solo se aceptan letras!!")};
