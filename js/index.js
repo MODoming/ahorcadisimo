@@ -50,6 +50,8 @@ botonInicio.addEventListener("click", function(event){
                 document.getElementById("entrada").style.display = "flex";
                 document.getElementById("entrada").focus();
                 codigo = esLetra(document.querySelector("#entrada").value);
+                document.getElementById("entrada").value = "";
+                document.getElementById("mensaje2").innerHTML = "esto es un celular"
             } else {
                 codigo = esLetra(event.key.toLowerCase());
             };
