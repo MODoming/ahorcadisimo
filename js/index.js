@@ -39,13 +39,14 @@ botonInicio.addEventListener("click", function(event){
         if (dispositivo()){
             let letra = ""
             document.getElementById("entrada").style.display = "flex";
-            document.getElementById("entrada").style.border = "1";
+            document.getElementById("entrada").style.border = "1px";
             document.getElementById("entrada").focus();
             document.getElementById("entrada").oninput = function(e) {
                 letra = e.data;
                 codigo = esLetra(letra.charAt(0));
                 estadoJuego = juego(aleatoria, codigo, correcta, vidas, error);
-                document.getElementById("entrada").value = e.data;
+                document.getElementById("entrada").value = "";
+                document.getElementById("entrada").placeholder = e.data;
             };
                   
         } else {
