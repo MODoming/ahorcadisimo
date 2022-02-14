@@ -8,7 +8,7 @@ function palo(ctx, xi, yi, xf, yf){
 function dibujarMunieco(vidas){
     if (vidas === 5) {
         ctx.beginPath();
-        ctx.fillStyle = "white"
+        ctx.fillStyle = "white";
         ctx.arc(170, 120, 30, 0, 2* Math.PI);
         ctx.fill();
         ctx.stroke();
@@ -26,13 +26,5 @@ function dibujarTorre(){
     img.src = "js/rope-24291_640.png";
     img.onload = function(){
         ctx.drawImage(img, 0, 0);
-    }
-    /*ctx.moveTo(0, 450);
-    ctx.lineTo(100, 400);
-    ctx.lineTo(200, 450);
-    ctx.closePath();
-    ctx.stroke();
-    palo(ctx, 100, 400, 100, 050);
-    palo(ctx, 100, 050, 200, 050);
-    palo(ctx, 200, 050, 200, 100);*/
+    };
 };
