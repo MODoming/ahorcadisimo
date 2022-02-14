@@ -18,6 +18,7 @@ var vidas = 6;
 var error = "";
 
 botonInicio.addEventListener("click", function(event){   
+    document.getElementById("entrada").placeholder = " ";
     document.getElementById("entrada").value = ""
     document.getElementById("mensaje1").innerHTML = ""
     document.getElementById("mensaje2").innerHTML = ""
@@ -46,7 +47,7 @@ botonInicio.addEventListener("click", function(event){
                 codigo = esLetra(letra.charAt(0));
                 estadoJuego = juego(aleatoria, codigo, correcta, vidas, error);
                 document.getElementById("entrada").value = "";
-                document.getElementById("entrada").placeholder = e.data;
+                document.getElementById("entrada").placeholder = " " + e.data;
             };
                   
         } else {
