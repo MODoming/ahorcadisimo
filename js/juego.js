@@ -12,14 +12,19 @@ function dispositivo(){ return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMob
 function juego(aleatoria, codigo, correcta, salud, erronea){
     vidas = salud;
     error = erronea;
+    let respuesta = toString(correcta.join(""))
     if (aleatoria.join("").toLowerCase() !== correcta.join("").toLowerCase() && vidas > 0){  
         if (aleatoria.includes(codigo)){        
             for (let i=0; i< aleatoria.length;i++){                    
                 if (aleatoria[i] === codigo){
                     correcta[i] = codigo.toUpperCase();
+                    respuesta[i]= codigo.toUpperCase();
                 };      
             };
             document.getElementById("correcta").innerHTML = correcta.join(" ");
+            if (dispositivo()){
+                document.getElementById("correcta").value = respuesta;
+            };
             if (aleatoria.join("").toLowerCase() === correcta.join("").toLowerCase()){
                 document.getElementById("mensaje1").style.color = "green";
                 document.getElementById("mensaje1").innerHTML = "GANASTE!! Muy bien!!!";
