@@ -12,29 +12,19 @@ function dispositivo(){ return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMob
 function juego(aleatoria, codigo, correcta, salud, erronea){
     vidas = salud;
     error = erronea;
-<<<<<<< HEAD
-    let respuesta = toString(correcta.join(""));
-=======
-    let acertada = "";
->>>>>>> 937b9e9892db19163da221868952eeca010bf7af
-    if (aleatoria.join("").toLowerCase() !== correcta.join("").toLowerCase() && vidas > 0){  
-        if (aleatoria.includes(codigo)){        
+    let responde = ""
+    if (aleatoria.join("").toLowerCase() !== correcta.join("").toLowerCase() && vidas > 0){ 
+        document.getElementById("mensaje-movil").innerHTML = responde;
+        if (aleatoria.includes(codigo)){
             for (let i=0; i< aleatoria.length;i++){                    
                 if (aleatoria[i] === codigo){
                     correcta[i] = codigo.toUpperCase();
-                    respuesta[i]= codigo.toUpperCase();
                 };      
-            };
-            if (dispositivo()){
-                acertada = correcta.join(" ");
-                document.getElementById("correcta").value = acertada;
-            } else {
-                document.getElementById("correcta").innerHTML = correcta.join(" ");
-            };
+            };            
+            responde = correcta.join(" ").toString()
+            
+            document.getElementById("mensaje-movil").innerHTML = responde;
             document.getElementById("correcta").innerHTML = correcta.join(" ");
-            if (dispositivo()){
-                document.getElementById("correcta").value = respuesta;
-            };
             if (aleatoria.join("").toLowerCase() === correcta.join("").toLowerCase()){
                 document.getElementById("mensaje1").style.color = "green";
                 document.getElementById("mensaje1").innerHTML = "GANASTE!! Muy bien!!!";
@@ -54,6 +44,7 @@ function juego(aleatoria, codigo, correcta, salud, erronea){
                 document.getElementById("entrada").blur();
                 return false;
             };
+            document.getElementById("mensaje-movil").innerHTML = responde;
         };
     } else { 
         document.getElementById("entrada").blur();

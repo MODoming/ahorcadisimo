@@ -34,13 +34,14 @@ botonInicio.addEventListener("click", function(event){
     for (i=0;i<aleatoria.length;i++){
         correcta[i] = "_";
     };
-    document.getElementById("correcta").innerHTML = correcta.join(" ");  
+    document.getElementById("correcta").innerHTML = correcta.join(" ");
+    document.getElementById("mensaje-movil").innerHTML = " ";  
 
     if (estadoJuego){        
         if (dispositivo()){
             let letra = ""
             document.getElementById("entrada").style.display = "flex";
-            document.getElementById("entrada").style.border = "1px";
+            document.getElementById("entrada").style.border = "solid";
             document.getElementById("entrada").focus();
             document.getElementById("entrada").oninput = function(e) {
                 letra = e.data;
@@ -49,8 +50,10 @@ botonInicio.addEventListener("click", function(event){
                 document.getElementById("entrada").value = "";
                 document.getElementById("entrada").placeholder = " " + e.data;
             };
-                  
+            document.getElementById("correcta").style= "display: none";      
         } else {
+            
+            document.getElementById("mensaje-movil").style= "display: none";
             window.addEventListener("keypress", (event) => {
                 codigo = esLetra(event.key.toLowerCase());
                 estadoJuego = juego(aleatoria, codigo, correcta, vidas, error);
