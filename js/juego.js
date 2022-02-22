@@ -12,33 +12,18 @@ function dispositivo(){ return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMob
 function juego(aleatoria, codigo, correcta, salud, erronea){
     vidas = salud;
     error = erronea;
-<<<<<<< HEAD
     let responde = ""
     if (aleatoria.join("").toLowerCase() !== correcta.join("").toLowerCase() && vidas > 0){ 
         document.getElementById("mensaje-movil").innerHTML = responde;
         if (aleatoria.includes(codigo)){
-=======
-    let respuesta = toString(correcta.join(""));
-    if (aleatoria.join("").toLowerCase() !== correcta.join("").toLowerCase() && vidas > 0){  
-        if (aleatoria.includes(codigo)){        
->>>>>>> 120646913f85338394e5fba800d115ac8d590ba5
             for (let i=0; i< aleatoria.length;i++){                    
                 if (aleatoria[i] === codigo){
                     correcta[i] = codigo.toUpperCase();
                 };      
-<<<<<<< HEAD
             };            
             responde = correcta.join(" ").toString()
             
             document.getElementById("mensaje-movil").innerHTML = responde;
-=======
-            };
-            if (dispositivo()){
-                document.getElementById("correcta").value = respuesta;
-            } else {
-                document.getElementById("correcta").innerHTML = correcta.join(" ");
-            };
->>>>>>> 120646913f85338394e5fba800d115ac8d590ba5
             document.getElementById("correcta").innerHTML = correcta.join(" ");
             if (aleatoria.join("").toLowerCase() === correcta.join("").toLowerCase()){
                 document.getElementById("mensaje1").style.color = "green";
