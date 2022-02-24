@@ -9,7 +9,8 @@ function esLetra(caracter){
 
 function dispositivo(){ return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))};
 
-function juego(aleatoria, codigo, correcta, salud, erronea){
+function juego(aleatoria, letra, correcta, salud, erronea){
+    codigo = letra.toString();
     vidas = salud;
     error = erronea;
     let responde = ""
