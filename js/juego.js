@@ -13,20 +13,16 @@ function juego(aleatoria, letra, correcta, salud, erronea){
     codigo = letra.toString();
     vidas = salud;
     error = erronea;
-    let responde = ""
-    if (aleatoria.join("").toLowerCase() !== correcta.join("").toLowerCase() && vidas > 0){ 
-        document.getElementById("mensaje-movil").innerHTML = responde;
+    if (aleatoria.join("") !== correcta.join("") && vidas > 0){
         if (aleatoria.includes(codigo)){
             for (let i=0; i< aleatoria.length;i++){                    
                 if (aleatoria[i] === codigo){
-                    correcta[i] = codigo.toUpperCase();
-                };      
-            };            
-            responde = correcta.join(" ").toString()
+                    correcta[i] = codigo;
+                };     
+            };
             
-            document.getElementById("mensaje-movil").innerHTML = responde;
-            document.getElementById("correcta").innerHTML = correcta.join(" ");
-            if (aleatoria.join("").toLowerCase() === correcta.join("").toLowerCase()){
+            document.getElementById("correcta").innerHTML = correcta.join(" ").toUpperCase().toString();
+            if (aleatoria.join("") === correcta.join("")){
                 document.getElementById("mensaje1").style.color = "green";
                 document.getElementById("mensaje1").innerHTML = "GANASTE!! Muy bien!!!";
                 document.getElementById("mensaje2").innerHTML = "La respuesta es \"" + aleatoria.join("") +"\"";
@@ -45,7 +41,6 @@ function juego(aleatoria, letra, correcta, salud, erronea){
                 document.getElementById("entrada").blur();
                 return false;
             };
-            document.getElementById("mensaje-movil").innerHTML = responde;
         };
     } else { 
         document.getElementById("entrada").blur();

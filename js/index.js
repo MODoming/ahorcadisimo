@@ -45,15 +45,12 @@ botonInicio.addEventListener("click", function(event){
             document.getElementById("entrada").focus();
             document.getElementById("entrada").oninput = function(e) {
                 letra = e.data;
-                codigo = esLetra(letra.charAt(0));
+                codigo = (esLetra(letra.charAt(0))).toLowerCase();
                 estadoJuego = juego(aleatoria, codigo, correcta, vidas, error);
                 document.getElementById("entrada").value = "";
                 document.getElementById("entrada").placeholder = " " + e.data;
-            };
-            document.getElementById("correcta").style= "display: none";      
+            };    
         } else {
-            
-            document.getElementById("mensaje-movil").style= "display: none";
             window.addEventListener("keypress", (event) => {
                 codigo = esLetra(event.key.toLowerCase());
                 estadoJuego = juego(aleatoria, codigo, correcta, vidas, error);
