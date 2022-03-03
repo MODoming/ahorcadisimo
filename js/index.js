@@ -45,17 +45,43 @@ botonInicio.addEventListener("click", function(event){
             document.getElementById("entrada").focus();
             document.getElementById("entrada").oninput = function(e) {
                 letra = e.data;
-                codigo = (esLetra(letra.charAt(0))).toLowerCase();
-                estadoJuego = juego(aleatoria, codigo, correcta, vidas, error);
+                codigo = esLetra(letra.charAt(0));
                 document.getElementById("entrada").value = "";
                 document.getElementById("entrada").placeholder = " " + e.data;
             };    
         } else {
             window.addEventListener("keypress", (event) => {
-                codigo = esLetra(event.key.toLowerCase());
-                estadoJuego = juego(aleatoria, codigo, correcta, vidas, error);
+                codigo = esLetra(event.key);
             });
-        };      
+        };
+
+        if (aleatoria.includes(codigo)){
+            for (let i=0; i< aleatoria.length;i++){                    
+                if (aleatoria[i] === codigo){
+                    correcta[i] = codigo;
+                };     
+            };
+            
+            document.getElementById("correcta").innerHTML = correcta.join(" ").toUpperCase().toString();
+            if (aleatoria.join("") === correcta.join("")){
+                document.getElementById("mensaje1").style.color = "green";
+                document.getElementById("mensaje1").innerHTML = "GANASTE!! Muy bien!!!";
+                document.getElementById("mensaje2").innerHTML = "La respuesta es \"" + aleatoria.join("") +"\"";
+                document.getElementById("entrada").blur();
+            };
+        } else if (!error.includes(codigo) && vidas > 0){
+            vidas -= 1;
+            error += " " + codigo;
+            document.getElementById("error").innerHTML = error.toUpperCase();
+            dibujarMunieco(vidas);
+            if ( vidas === 0 ) {
+                document.getElementById("mensaje1").style.color = "red";
+                document.getElementById("mensaje1").innerHTML = "PERDISTE!!";
+                document.getElementById("mensaje2").innerHTML = "La respuesta correcta era \"" + aleatoria.join("") +"\"";
+                document.getElementById("entrada").blur();
+            };
+        };     
+        if (aleatoria.join("") !== correcta.join("") && vidas > 0){document.getElementById("entrada").blur();};
     };        
 });
 
